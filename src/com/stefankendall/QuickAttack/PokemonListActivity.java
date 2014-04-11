@@ -2,6 +2,7 @@ package com.stefankendall.QuickAttack;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.stefankendall.QuickAttack.data.DataLoader;
 
 public class PokemonListActivity extends Activity {
     /**
