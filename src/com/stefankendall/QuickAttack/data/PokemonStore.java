@@ -2,6 +2,8 @@ package com.stefankendall.QuickAttack.data;
 
 import android.util.Log;
 import com.google.common.base.Charsets;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
@@ -20,6 +22,7 @@ import java.util.Map;
 
 public class PokemonStore {
     static PokemonStore pokemonStore;
+    Map<String, Map> pokemonData;
 
     public static synchronized PokemonStore instance() {
         if (pokemonStore == null) {
@@ -47,17 +50,23 @@ public class PokemonStore {
         return Ordering.natural().immutableSortedCopy(this.pokemonData.keySet());
     }
 
-    Map<String, Map> pokemonData;
-
-    List<String> namesMatching(String name) {
-        return null;
+    List<String> namesMatching(final String name) {
+        if( name.equals("")){
+            return this.names();
+        }
+        return Lists.newArrayList(Collections2.filter(this.names(), new Predicate<String>() {
+            @Override
+            public boolean apply(String pokemon) {
+                return pokemon.toLowerCase().indexOf(name.toLowerCase()) == 0;
+            }
+        }));
     }
 
-    Map<String, Integer> statsFor(String name) {
-        return null;
+    Map<String, Double> statsFor(String name) {
+        return (Map<String, Double>) this.pokemonData.get(name).get("stats");
     }
 
     List<String> megasFor(String pokemon) {
-        return null;
+        return this.namesMatching("Mega " + pokemon);
     }
 }
