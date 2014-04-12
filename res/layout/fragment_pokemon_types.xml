@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/type_super_effective"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                style="@style/section_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Super Effective"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/type_immune"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                style="@style/section_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Immune"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/type_not_effective"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                style="@style/section_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Not Effective"/>
+    </LinearLayout>
+</LinearLayout>

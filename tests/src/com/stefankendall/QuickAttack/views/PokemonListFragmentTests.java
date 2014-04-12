@@ -1,7 +1,6 @@
 package com.stefankendall.QuickAttack.views;
 
 import android.test.ActivityInstrumentationTestCase2;
-import com.stefankendall.QuickAttack.PokemonListActivity;
 import com.stefankendall.QuickAttack.data.DataLoader;
 import junit.framework.Assert;
 

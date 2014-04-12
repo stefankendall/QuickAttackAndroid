@@ -4,11 +4,14 @@ import android.app.ListFragment;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ListView;
 import android.widget.SearchView;
 import com.stefankendall.QuickAttack.R;
 
@@ -72,5 +75,13 @@ public class PokemonListFragment extends ListFragment {
 
     public void filterPokemon(String filter) {
         this.setListAdapter(new PokemonListAdapter(getActivity(), filter));
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        String pokemon = (String) this.getListAdapter().getItem(position);
+        Intent intent = new Intent(getActivity(), PokemonTypeViewActivity.class);
+        intent.putExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME, pokemon);
+        startActivity(intent);
     }
 }
