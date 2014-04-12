@@ -42,7 +42,7 @@ public class PokemonStore {
         }
     }
 
-    List<String> typesFor(String name) {
+    public List<String> typesFor(String name) {
         return (List<String>) this.pokemonData.get(name).get("types");
     }
 

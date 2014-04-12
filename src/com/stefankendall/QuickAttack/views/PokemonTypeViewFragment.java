@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.stefankendall.QuickAttack.R;
+import com.stefankendall.QuickAttack.data.PokemonStore;
+import com.stefankendall.QuickAttack.data.TypeCalculator;
+
+import java.util.List;
 
 public class PokemonTypeViewFragment extends Fragment {
     public static String EXTRA_POKEMON_NAME = "extra_pokemon_name";
@@ -17,18 +21,30 @@ public class PokemonTypeViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         setRetainInstance(true);
-        if (savedInstanceState != null) {
-            this.pokemon = savedInstanceState.getString(EXTRA_POKEMON_NAME);
-        }
+        this.pokemon = getArguments().getString(EXTRA_POKEMON_NAME);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pokemon_types, null);
 
+        List<String> superEffectiveTypes = new TypeCalculator().superEffectiveTypes(PokemonStore.instance().typesFor(this.pokemon));
+        List<String> notEffectiveTypes = new TypeCalculator().notEffectiveTypes(PokemonStore.instance().typesFor(this.pokemon));
+        List<String> immuneTypes = new TypeCalculator().immuneTypes(PokemonStore.instance().typesFor(this.pokemon));
+
         LinearLayout superEffective = (LinearLayout) v.findViewById(R.id.type_super_effective);
-        LinearLayout immune = (LinearLayout) v.findViewById(R.id.type_immune);
         LinearLayout notEffective = (LinearLayout) v.findViewById(R.id.type_not_effective);
+        LinearLayout immune = (LinearLayout) v.findViewById(R.id.type_immune);
+
+        if (superEffectiveTypes.size() == 0) {
+            superEffective.setVisibility(LinearLayout.GONE);
+        }
+        if (immuneTypes.size() == 0) {
+            immune.setVisibility(LinearLayout.GONE);
+        }
+        if(notEffectiveTypes.size() == 0){
+            notEffective.setVisibility(LinearLayout.GONE);
+        }
 
         return v;
     }

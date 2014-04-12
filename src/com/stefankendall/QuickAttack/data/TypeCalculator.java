@@ -62,7 +62,7 @@ public class TypeCalculator {
         return types;
     }
 
-    TypeCalculator() {
+    public TypeCalculator() {
         this.typeChart = ImmutableMap.<String, Map<String, BigDecimal>>builder()
                 .put("normal", ImmutableMap.<String, BigDecimal>builder()
                                 .put("normal", new BigDecimal("1"))
