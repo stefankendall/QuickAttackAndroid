@@ -9,8 +9,8 @@ import com.stefankendall.QuickAttack.data.PokemonStore;
 public class PokemonListAdapter extends ArrayAdapter<String> {
     private final Activity activity;
 
-    public PokemonListAdapter(Activity activity) {
-        super(activity, android.R.layout.simple_list_item_1, PokemonStore.instance().names());
+    public PokemonListAdapter(Activity activity, String filter) {
+        super(activity, android.R.layout.simple_list_item_1, PokemonStore.instance().namesMatching(filter));
         this.activity = activity;
     }
 }

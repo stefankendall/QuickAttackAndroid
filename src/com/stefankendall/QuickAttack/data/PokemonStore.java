@@ -50,7 +50,7 @@ public class PokemonStore {
         return Ordering.natural().immutableSortedCopy(this.pokemonData.keySet());
     }
 
-    List<String> namesMatching(final String name) {
+    public List<String> namesMatching(final String name) {
         if( name.equals("")){
             return this.names();
         }
