@@ -1,6 +1,7 @@
 package com.stefankendall.QuickAttack.data;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class TypeCalculator {
     Map<String, Map<String, BigDecimal>> typeChart;
 
-    Map<String, BigDecimal> effectivenessAgainst(List<String> types) {
+    public Map<String, BigDecimal> effectivenessAgainst(List<String> types) {
         Map<String, BigDecimal> effectiveness = Maps.newHashMap();
         for (String attackingType : this.typeChart.keySet()) {
             BigDecimal typeValue = new BigDecimal(1);
@@ -22,6 +23,43 @@ public class TypeCalculator {
             effectiveness.put(attackingType, typeValue);
         }
         return effectiveness;
+    }
+
+    public List<String> superEffectiveTypes(List<String> defensiveTypes) {
+        Map<String, BigDecimal> effectiveness = this.effectivenessAgainst(defensiveTypes);
+        List<String> types = Lists.newArrayList();
+
+        for (Map.Entry<String, BigDecimal> typeEffectiveness : effectiveness.entrySet()) {
+            if (typeEffectiveness.getValue().compareTo(BigDecimal.ONE) > 0) {
+                types.add(typeEffectiveness.getKey());
+            }
+        }
+        return types;
+    }
+
+    public List<String> notEffectiveTypes(List<String> defensiveTypes) {
+        Map<String, BigDecimal> effectiveness = this.effectivenessAgainst(defensiveTypes);
+        List<String> types = Lists.newArrayList();
+
+        for (Map.Entry<String, BigDecimal> typeEffectiveness : effectiveness.entrySet()) {
+            if (typeEffectiveness.getValue().compareTo(BigDecimal.ONE) < 0
+                    && !typeEffectiveness.getValue().equals(BigDecimal.ZERO)) {
+                types.add(typeEffectiveness.getKey());
+            }
+        }
+        return types;
+    }
+
+    public List<String> immuneTypes(List<String> defensiveTypes) {
+        Map<String, BigDecimal> effectiveness = this.effectivenessAgainst(defensiveTypes);
+        List<String> types = Lists.newArrayList();
+
+        for (Map.Entry<String, BigDecimal> typeEffectiveness : effectiveness.entrySet()) {
+            if (typeEffectiveness.getValue().equals(BigDecimal.ZERO)) {
+                types.add(typeEffectiveness.getKey());
+            }
+        }
+        return types;
     }
 
     TypeCalculator() {
