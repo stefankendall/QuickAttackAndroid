@@ -13,7 +13,9 @@ import com.stefankendall.QuickAttack.views.lists.CustomListItem;
 import com.stefankendall.QuickAttack.views.lists.HeaderListItem;
 import com.stefankendall.QuickAttack.views.lists.SimpleListItem;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public class PokemonTypeListAdapter extends BaseAdapter {
     private List<CustomListItem> items;
@@ -21,20 +23,22 @@ public class PokemonTypeListAdapter extends BaseAdapter {
     public PokemonTypeListAdapter(String pokemon) {
         this.items = Lists.newArrayList();
 
-        List<String> superEffectiveTypes = new TypeCalculator().superEffectiveTypes(PokemonStore.instance().typesFor(pokemon));
-        List<String> immuneTypes = new TypeCalculator().immuneTypes(PokemonStore.instance().typesFor(pokemon));
-        List<String> notEffectiveTypes = new TypeCalculator().notEffectiveTypes(PokemonStore.instance().typesFor(pokemon));
+        List<String> pokemonTypes = PokemonStore.instance().typesFor(pokemon);
+        List<String> superEffectiveTypes = new TypeCalculator().superEffectiveTypes(pokemonTypes);
+        List<String> immuneTypes = new TypeCalculator().immuneTypes(pokemonTypes);
+        List<String> notEffectiveTypes = new TypeCalculator().notEffectiveTypes(pokemonTypes);
+        Map<String, BigDecimal> effectiveness = new TypeCalculator().effectivenessAgainst(pokemonTypes);
 
-        addTypes(superEffectiveTypes, "Super Effective");
-        addTypes(immuneTypes, "Immune");
-        addTypes(notEffectiveTypes, "Not Effective");
+        addTypes(superEffectiveTypes, "Super Effective", effectiveness);
+        addTypes(immuneTypes, "Immune", effectiveness);
+        addTypes(notEffectiveTypes, "Not Effective", effectiveness);
     }
 
-    private void addTypes(List<String> types, String header) {
+    private void addTypes(List<String> types, String header, Map<String, BigDecimal> effectiveness) {
         if (types.size() > 0) {
             this.items.add(new HeaderListItem(header));
             for (String type : Ordering.natural().sortedCopy(types)) {
-                this.items.add(new SimpleListItem(type));
+                this.items.add(new PokemonTypeListItem(type, effectiveness.get(type)));
             }
         }
     }
