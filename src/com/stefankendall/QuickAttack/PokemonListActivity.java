@@ -1,16 +1,14 @@
 package com.stefankendall.QuickAttack;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import com.stefankendall.QuickAttack.data.DataLoader;
+import com.stefankendall.QuickAttack.views.PokemonListFragment;
 
-public class PokemonListActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
+public class PokemonListActivity extends SingleFragmentActivity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+    protected Fragment createFragment() {
+        return new PokemonListFragment();
     }
 }

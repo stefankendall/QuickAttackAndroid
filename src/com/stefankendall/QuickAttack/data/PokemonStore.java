@@ -46,7 +46,7 @@ public class PokemonStore {
         return (List<String>) this.pokemonData.get(name).get("types");
     }
 
-    List<String> names() {
+    public List<String> names() {
         return Ordering.natural().immutableSortedCopy(this.pokemonData.keySet());
     }
 
