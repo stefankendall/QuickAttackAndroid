@@ -43,7 +43,7 @@ public class TypeCalculator {
 
         for (Map.Entry<String, BigDecimal> typeEffectiveness : effectiveness.entrySet()) {
             if (typeEffectiveness.getValue().compareTo(BigDecimal.ONE) < 0
-                    && !typeEffectiveness.getValue().equals(BigDecimal.ZERO)) {
+                    && typeEffectiveness.getValue().compareTo(BigDecimal.ZERO) != 0) {
                 types.add(typeEffectiveness.getKey());
             }
         }
@@ -55,7 +55,7 @@ public class TypeCalculator {
         List<String> types = Lists.newArrayList();
 
         for (Map.Entry<String, BigDecimal> typeEffectiveness : effectiveness.entrySet()) {
-            if (typeEffectiveness.getValue().equals(BigDecimal.ZERO)) {
+            if (typeEffectiveness.getValue().compareTo(BigDecimal.ZERO) == 0) {
                 types.add(typeEffectiveness.getKey());
             }
         }
