@@ -14,6 +14,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 import android.widget.SearchView;
 import com.stefankendall.QuickAttack.R;
+import com.stefankendall.QuickAttack.views.type.PokemonTypeViewActivity;
+import com.stefankendall.QuickAttack.views.type.PokemonTypeViewFragment;
 
 public class PokemonListFragment extends ListFragment {
     private String currentSearch = "";

@@ -1,4 +1,4 @@
-package com.stefankendall.QuickAttack.views;
+package com.stefankendall.QuickAttack.views.type;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import com.stefankendall.QuickAttack.data.PokemonStore;
 import com.stefankendall.QuickAttack.data.TypeCalculator;
 import com.stefankendall.QuickAttack.views.lists.CustomListItem;
 import com.stefankendall.QuickAttack.views.lists.HeaderListItem;
-import com.stefankendall.QuickAttack.views.lists.SimpleListItem;
 
 import java.math.BigDecimal;
 import java.util.List;

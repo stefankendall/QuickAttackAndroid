@@ -1,4 +1,4 @@
-package com.stefankendall.QuickAttack.views;
+package com.stefankendall.QuickAttack.views.type;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;

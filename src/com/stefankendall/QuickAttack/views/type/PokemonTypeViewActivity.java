@@ -1,4 +1,4 @@
-package com.stefankendall.QuickAttack.views;
+package com.stefankendall.QuickAttack.views.type;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -16,14 +16,5 @@ public class PokemonTypeViewActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         return PokemonTypeViewFragment.newInstance(getIntent().getStringExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            this.finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

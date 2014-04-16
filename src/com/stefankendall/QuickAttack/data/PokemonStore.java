@@ -62,7 +62,7 @@ public class PokemonStore {
         }));
     }
 
-    Map<String, Double> statsFor(String name) {
+    public Map<String, Double> statsFor(String name) {
         return (Map<String, Double>) this.pokemonData.get(name).get("stats");
     }
 
