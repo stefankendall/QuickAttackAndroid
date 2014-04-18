@@ -1,15 +1,12 @@
 package com.stefankendall.QuickAttack.data;
 
-import android.util.Log;
 import com.google.common.base.Charsets;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.common.io.CharStreams;
 import com.google.common.io.Closeables;
-import com.google.common.io.InputSupplier;
 import com.google.gson.Gson;
 import com.stefankendall.QuickAttack.App;
 import com.stefankendall.QuickAttack.R;
@@ -51,7 +48,7 @@ public class PokemonStore {
     }
 
     public List<String> namesMatching(final String name) {
-        if( name.equals("")){
+        if (name.equals("")) {
             return this.names();
         }
         return Lists.newArrayList(Collections2.filter(this.names(), new Predicate<String>() {
