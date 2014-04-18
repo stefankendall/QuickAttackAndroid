@@ -11,6 +11,7 @@ public class PokemonStatsCompareListAdapter extends SimpleListAdapter {
 
         Map<String, Double> pokemon1Stats = PokemonStore.instance().statsFor(pokemon1);
         Map<String, Double> pokemon2Stats = PokemonStore.instance().statsFor(pokemon2);
+        items.add(new PokemonStatsCompareHeader(pokemon1, pokemon2));
         items.add(new PokemonCompareStatsListItem("HP", pokemon1Stats.get("hp").intValue(), pokemon2Stats.get("hp").intValue()));
         items.add(new PokemonCompareStatsListItem("Attack", pokemon1Stats.get("attack").intValue(), pokemon2Stats.get("attack").intValue()));
         items.add(new PokemonCompareStatsListItem("Defense", pokemon1Stats.get("defense").intValue(), pokemon2Stats.get("defense").intValue()));
