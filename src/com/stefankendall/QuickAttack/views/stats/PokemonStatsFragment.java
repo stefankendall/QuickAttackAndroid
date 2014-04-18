@@ -56,7 +56,7 @@ public class PokemonStatsFragment extends ListFragment {
         addComparePokemon(data.getStringExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME));
     }
 
-    private void addComparePokemon(String pokemon) {
-
+    private void addComparePokemon(String comparePokemon) {
+        this.setListAdapter(new PokemonStatsCompareListAdapter(this.pokemon, comparePokemon));
     }
 }
