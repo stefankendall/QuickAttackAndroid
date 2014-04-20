@@ -12,7 +12,7 @@ import android.view.*;
 import com.stefankendall.QuickAttack.R;
 import com.stefankendall.QuickAttack.views.stats.PokemonStatsActivity;
 
-public class PokemonTypeViewFragment extends ListFragment {
+public class PokemonTypeViewFragment extends ListFragment implements MegaDelegate {
     public static String EXTRA_POKEMON_NAME = "extra_pokemon_name";
     private String pokemon;
 
@@ -22,7 +22,7 @@ public class PokemonTypeViewFragment extends ListFragment {
 
         setRetainInstance(true);
         this.pokemon = getArguments().getString(EXTRA_POKEMON_NAME);
-        this.setListAdapter(new PokemonTypeListAdapter(getArguments().getString(EXTRA_POKEMON_NAME)));
+        this.setListAdapter(new PokemonTypeListAdapter(getArguments().getString(EXTRA_POKEMON_NAME), this));
 
         setHasOptionsMenu(true);
     }
@@ -58,5 +58,10 @@ public class PokemonTypeViewFragment extends ListFragment {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void switchTo(String pokemon) {
+        Log.i("TAG", pokemon);
     }
 }

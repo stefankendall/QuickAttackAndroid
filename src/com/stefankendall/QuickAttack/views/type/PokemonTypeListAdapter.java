@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PokemonTypeListAdapter extends SimpleListAdapter {
-    public PokemonTypeListAdapter(String pokemon) {
+    public PokemonTypeListAdapter(String pokemon, MegaDelegate megaDelegate) {
         super();
 
         List<String> pokemonTypes = PokemonStore.instance().typesFor(pokemon);
@@ -23,7 +23,7 @@ public class PokemonTypeListAdapter extends SimpleListAdapter {
         this.items.add(new TypeInfoListItem(pokemonTypes));
         List<String> megas = PokemonStore.instance().megasFor(pokemon);
         if(megas.size() > 0){
-            this.items.add(new MegasListItem(megas));
+            this.items.add(new MegasListItem(megas, megaDelegate));
         }
 
         addTypes(superEffectiveTypes, "Super Effective", effectiveness);

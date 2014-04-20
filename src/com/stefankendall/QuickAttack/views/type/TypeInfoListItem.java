@@ -22,7 +22,7 @@ public class TypeInfoListItem implements CustomListItem {
             view = inflater.inflate(R.layout.type_info_list_item, null);
         }
 
-        TextView typeText = (TextView) view.findViewById(R.id.type);
+        TextView typeText = (TextView) view.findViewById(R.id.type_info);
         if (typeText != null) {
             typeText.setText(Joiner.on(" | ").join(this.pokemonTypes));
         }
