@@ -8,10 +8,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import com.stefankendall.QuickAttack.R;
 import com.stefankendall.QuickAttack.views.stats.PokemonStatsActivity;
 
@@ -28,6 +25,14 @@ public class PokemonTypeViewFragment extends ListFragment {
         this.setListAdapter(new PokemonTypeListAdapter(getArguments().getString(EXTRA_POKEMON_NAME)));
 
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        this.getListView().setSelector(R.drawable.not_selectable);
+        this.getListView().setCacheColorHint(Color.TRANSPARENT);
     }
 
     public static Fragment newInstance(String pokemon) {

@@ -20,6 +20,7 @@ public class PokemonTypeListAdapter extends SimpleListAdapter {
         List<String> notEffectiveTypes = new TypeCalculator().notEffectiveTypes(pokemonTypes);
         Map<String, BigDecimal> effectiveness = new TypeCalculator().effectivenessAgainst(pokemonTypes);
 
+        this.items.add(new TypeInfoListItem(pokemonTypes));
         addTypes(superEffectiveTypes, "Super Effective", effectiveness);
         addTypes(immuneTypes, "Immune", effectiveness);
         addTypes(notEffectiveTypes, "Not Effective", effectiveness);

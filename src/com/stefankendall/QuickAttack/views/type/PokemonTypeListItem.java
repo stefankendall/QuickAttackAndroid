@@ -50,7 +50,7 @@ public class PokemonTypeListItem implements CustomListItem {
 
         TextView typeText = (TextView) view.findViewById(R.id.type);
         TextView effectiveness = (TextView) view.findViewById(R.id.effectiveness);
-        if (typeText != null) {
+        if (typeText != null && effectiveness != null) {
             typeText.setText(this.type);
             typeText.setTextColor(this.colorsForType.get(this.type));
             effectiveness.setText(new DecimalFormat("#0.##").format(this.effectiveness) + "x");

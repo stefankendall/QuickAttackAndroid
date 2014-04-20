@@ -3,6 +3,7 @@ package com.stefankendall.QuickAttack.views.stats;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -33,6 +34,13 @@ public class PokemonStatsFragment extends ListFragment {
         this.setListAdapter(new PokemonStatsListAdapter(this.pokemon));
 
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        this.getListView().setSelector(R.drawable.not_selectable);
+        this.getListView().setCacheColorHint(Color.TRANSPARENT);
     }
 
     @Override
