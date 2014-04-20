@@ -21,6 +21,11 @@ public class PokemonTypeListAdapter extends SimpleListAdapter {
         Map<String, BigDecimal> effectiveness = new TypeCalculator().effectivenessAgainst(pokemonTypes);
 
         this.items.add(new TypeInfoListItem(pokemonTypes));
+        List<String> megas = PokemonStore.instance().megasFor(pokemon);
+        if(megas.size() > 0){
+            this.items.add(new MegasListItem(megas));
+        }
+
         addTypes(superEffectiveTypes, "Super Effective", effectiveness);
         addTypes(immuneTypes, "Immune", effectiveness);
         addTypes(notEffectiveTypes, "Not Effective", effectiveness);

@@ -63,7 +63,7 @@ public class PokemonStore {
         return (Map<String, Double>) this.pokemonData.get(name).get("stats");
     }
 
-    List<String> megasFor(String pokemon) {
+    public List<String> megasFor(String pokemon) {
         return this.namesMatching("Mega " + pokemon);
     }
 }
