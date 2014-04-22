@@ -4,10 +4,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.stefankendall.QuickAttack.App;
 
 import java.util.List;
+import java.util.Map;
 
 public class SimpleListAdapter extends BaseAdapter {
     protected List<CustomListItem> items;
@@ -29,6 +34,34 @@ public class SimpleListAdapter extends BaseAdapter {
     @Override
     public long getItemId(int i) {
         return i;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return Sets.newHashSet(Iterables.transform(items, new Function<CustomListItem, Class>() {
+            @Override
+            public Class apply(CustomListItem item) {
+                return item.getClass();
+            }
+        })).size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Map<Class, Integer> typePositionMap = this.getTypePositionMap();
+        return typePositionMap.get(this.items.get(position).getClass());
+    }
+
+    private Map<Class, Integer> getTypePositionMap() {
+        Map<Class, Integer> positionMap = Maps.newHashMap();
+        int id = 0;
+        for (CustomListItem item : this.items) {
+            Class itemClass = item.getClass();
+            if (!positionMap.keySet().contains(itemClass)) {
+                positionMap.put(itemClass, id++);
+            }
+        }
+        return positionMap;
     }
 
     @Override
