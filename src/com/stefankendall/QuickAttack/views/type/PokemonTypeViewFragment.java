@@ -62,6 +62,9 @@ public class PokemonTypeViewFragment extends ListFragment implements MegaDelegat
 
     @Override
     public void switchTo(String pokemon) {
-        Log.i("TAG", pokemon);
+        Intent intent = new Intent(getActivity(), PokemonTypeViewActivity.class);
+        intent.putExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME, pokemon);
+        startActivity(intent);
+        this.getActivity().finish();
     }
 }
