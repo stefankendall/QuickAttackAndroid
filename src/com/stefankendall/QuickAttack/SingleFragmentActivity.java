@@ -3,6 +3,8 @@ package com.stefankendall.QuickAttack;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.google.common.collect.Lists;
 
 public abstract class SingleFragmentActivity extends Activity {
     public Fragment fragment;
+    private ActionBarDrawerToggle drawerToggle;
+    private DrawerLayout drawerLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,9 @@ public abstract class SingleFragmentActivity extends Activity {
         setupAds();
         setupFragment();
         setupNavigation();
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
     }
 
     private void setupNavigation() {
@@ -36,6 +43,25 @@ public abstract class SingleFragmentActivity extends Activity {
                 Log.i("TAG", "TAPPED");
             }
         });
+
+
+        this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        this.drawerToggle = new ActionBarDrawerToggle(
+                this,
+                this.drawerLayout,
+                R.drawable.ic_navigation_drawer,
+                0,
+                0
+        ) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        this.drawerLayout.setDrawerListener(this.drawerToggle);
     }
 
     private void setupFragment() {
@@ -59,10 +85,15 @@ public abstract class SingleFragmentActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (this.drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         if (item.getItemId() == android.R.id.home) {
             this.finish();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
