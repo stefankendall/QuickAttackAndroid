@@ -10,6 +10,7 @@ public class PokemonListActivity extends SingleFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
+        getActionBar().setDisplayShowHomeEnabled(false);
     }
 
     @Override

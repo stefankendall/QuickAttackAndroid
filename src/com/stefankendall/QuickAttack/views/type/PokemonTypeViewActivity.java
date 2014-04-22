@@ -9,6 +9,7 @@ public class PokemonTypeViewActivity extends SingleFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setTitle(getIntent().getStringExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME));
         super.onCreate(savedInstanceState);
     }

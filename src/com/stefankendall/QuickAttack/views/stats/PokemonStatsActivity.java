@@ -11,6 +11,7 @@ public class PokemonStatsActivity extends SingleFragmentActivity {
         super.onCreate(savedInstanceState);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayShowHomeEnabled(false);
     }
 
     @Override
