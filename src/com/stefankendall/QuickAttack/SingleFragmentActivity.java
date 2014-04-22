@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.common.collect.Lists;
+import com.stefankendall.QuickAttack.views.nav.NavListAdapter;
 
 public abstract class SingleFragmentActivity extends Activity {
     public Fragment fragment;
@@ -35,8 +36,7 @@ public abstract class SingleFragmentActivity extends Activity {
 
     private void setupNavigation() {
         ListView listView = (ListView) findViewById(R.id.left_drawer);
-        listView.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, Lists.newArrayList("1", "2")));
+        listView.setAdapter(new NavListAdapter());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
