@@ -28,13 +28,13 @@ public abstract class SingleFragmentActivity extends Activity {
 
         setupAds();
         setupFragment();
-        setupNavigation();
 
+        getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
     }
 
-    private void setupNavigation() {
+    protected void setupNavigation() {
         ListView listView = (ListView) findViewById(R.id.left_drawer);
         listView.setAdapter(new NavListAdapter());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,7 +43,6 @@ public abstract class SingleFragmentActivity extends Activity {
                 Log.i("TAG", "TAPPED");
             }
         });
-
 
         this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         this.drawerToggle = new ActionBarDrawerToggle(
@@ -85,7 +84,7 @@ public abstract class SingleFragmentActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (this.drawerToggle.onOptionsItemSelected(item)) {
+        if (this.drawerToggle != null && this.drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 

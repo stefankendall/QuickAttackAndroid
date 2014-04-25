@@ -61,7 +61,11 @@ public class PokemonStatsFragment extends ListFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        addComparePokemon(data.getStringExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME));
+        if (data != null && data.hasExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME)) {
+            addComparePokemon(data.getStringExtra(PokemonTypeViewFragment.EXTRA_POKEMON_NAME));
+        } else {
+            this.setListAdapter(new PokemonStatsListAdapter(this.pokemon));
+        }
     }
 
     private void addComparePokemon(String comparePokemon) {

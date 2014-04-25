@@ -14,6 +14,8 @@ public class PokemonListActivity extends SingleFragmentActivity {
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setHomeAsUpIndicator(
                 getResources().getDrawable(R.drawable.ic_navigation_drawer));
+
+        setupNavigation();
     }
 
     @Override
