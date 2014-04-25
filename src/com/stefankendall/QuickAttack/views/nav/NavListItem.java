@@ -2,7 +2,9 @@ package com.stefankendall.QuickAttack.views.nav;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.stefankendall.QuickAttack.App;
 import com.stefankendall.QuickAttack.R;
 import com.stefankendall.QuickAttack.views.lists.CustomListItem;
 
@@ -22,10 +24,11 @@ public class NavListItem implements CustomListItem {
         }
 
         TextView textView = (TextView) view.findViewById(R.id.menu_item_text);
+        ImageView imageView = (ImageView) view.findViewById(R.id.menu_item_image);
 
         if (textView != null) {
             textView.setText(this.text);
-            textView.setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0);
+            imageView.setImageDrawable(App.getContext().getResources().getDrawable(this.drawable));
         }
 
         return view;
