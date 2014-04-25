@@ -25,3 +25,4 @@ proguard_logs
 .idea
 
 .DS_Store
+com_crashlytics_export_strings.xml
