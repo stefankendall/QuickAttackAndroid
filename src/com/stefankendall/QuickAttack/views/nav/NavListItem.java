@@ -11,10 +11,12 @@ import com.stefankendall.QuickAttack.views.lists.CustomListItem;
 public class NavListItem implements CustomListItem {
     private final String text;
     private int drawable;
+    private NavAction navAction;
 
-    public NavListItem(String text, int drawable) {
+    public NavListItem(String text, int drawable, NavAction navAction) {
         this.text = text;
         this.drawable = drawable;
+        this.navAction = navAction;
     }
 
     @Override
@@ -32,5 +34,9 @@ public class NavListItem implements CustomListItem {
         }
 
         return view;
+    }
+
+    public NavAction getNavAction() {
+        return navAction;
     }
 }

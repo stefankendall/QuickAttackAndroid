@@ -9,12 +9,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.common.collect.Lists;
 import com.stefankendall.QuickAttack.views.nav.NavListAdapter;
+import com.stefankendall.QuickAttack.views.nav.NavListItem;
 
 public abstract class SingleFragmentActivity extends Activity {
     public Fragment fragment;
@@ -35,12 +34,13 @@ public abstract class SingleFragmentActivity extends Activity {
     }
 
     protected void setupNavigation() {
-        ListView listView = (ListView) findViewById(R.id.left_drawer);
+        final ListView listView = (ListView) findViewById(R.id.left_drawer);
         listView.setAdapter(new NavListAdapter());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("TAG", "TAPPED");
+                NavListItem item = (NavListItem) listView.getAdapter().getItem(i);
+                item.getNavAction().run(SingleFragmentActivity.this);
             }
         });
 
