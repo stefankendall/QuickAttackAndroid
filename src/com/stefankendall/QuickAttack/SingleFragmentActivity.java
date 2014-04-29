@@ -34,6 +34,10 @@ public abstract class SingleFragmentActivity extends Activity {
     }
 
     protected void setupNavigation() {
+        getActionBar().setDisplayShowHomeEnabled(false);
+        getActionBar().setHomeAsUpIndicator(
+                getResources().getDrawable(R.drawable.ic_navigation_drawer));
+
         final ListView listView = (ListView) findViewById(R.id.left_drawer);
         listView.setAdapter(new NavListAdapter());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
