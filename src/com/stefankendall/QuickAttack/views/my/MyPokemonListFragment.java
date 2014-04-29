@@ -12,6 +12,6 @@ public class MyPokemonListFragment extends ListFragment {
         setHasOptionsMenu(true);
         getActivity().setTitle("My Pokemon");
 
-//        this.setListAdapter(new PokemonListAdapter(getActivity(), ""));
+        this.setListAdapter(new MyPokemonListAdapter());
     }
 }
