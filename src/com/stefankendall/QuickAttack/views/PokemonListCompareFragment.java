@@ -1,6 +1,7 @@
 package com.stefankendall.QuickAttack.views;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,10 +10,24 @@ import android.widget.ListView;
 import com.stefankendall.QuickAttack.views.type.PokemonTypeViewFragment;
 
 public class PokemonListCompareFragment extends PokemonListFragment {
+    public static Fragment newInstance(String title) {
+        PokemonListCompareFragment fragment = new PokemonListCompareFragment();
+        Bundle args = new Bundle();
+        args.putString(PokemonSelectActivity.EXTRA_TITLE, title);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().setTitle("Compare to");
+        if (savedInstanceState != null) {
+            String title = savedInstanceState.getString(PokemonSelectActivity.EXTRA_TITLE);
+            if (title != null) {
+                getActivity().setTitle(title);
+            }
+        }
     }
 
     @Override

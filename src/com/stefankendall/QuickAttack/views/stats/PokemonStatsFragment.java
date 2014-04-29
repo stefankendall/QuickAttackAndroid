@@ -5,12 +5,11 @@ import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.stefankendall.QuickAttack.R;
-import com.stefankendall.QuickAttack.views.PokemonCompareActivity;
+import com.stefankendall.QuickAttack.views.PokemonSelectActivity;
 import com.stefankendall.QuickAttack.views.type.PokemonTypeViewFragment;
 
 public class PokemonStatsFragment extends ListFragment {
@@ -52,7 +51,7 @@ public class PokemonStatsFragment extends ListFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.compare) {
-            Intent i = new Intent(getActivity(), PokemonCompareActivity.class);
+            Intent i = new Intent(getActivity(), PokemonSelectActivity.class);
             startActivityForResult(i, 0);
             return true;
         }
