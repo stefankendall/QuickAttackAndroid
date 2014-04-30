@@ -38,12 +38,13 @@ public class SimpleListAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return Sets.newHashSet(Iterables.transform(items, new Function<CustomListItem, Class>() {
+        int count = Sets.newHashSet(Iterables.transform(items, new Function<CustomListItem, Class>() {
             @Override
             public Class apply(CustomListItem item) {
                 return item.getClass();
             }
         })).size();
+        return count == 0 ? 1 : count;
     }
 
     @Override
