@@ -22,6 +22,7 @@
         <activity android:name=".views.type.PokemonTypeViewActivity"/>
         <activity android:name=".views.stats.PokemonStatsActivity"/>
         <activity android:name=".views.my.MyPokemonListActivity"/>
+        <activity android:name=".views.my.MyPokemonSelectListActivity"/>
         <activity android:name="com.google.android.gms.ads.AdActivity"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="f1f936528fec614b3f5e265a22c4bef0a92d8dc4"/>

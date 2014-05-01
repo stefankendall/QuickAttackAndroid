@@ -35,6 +35,10 @@ public class PokemonListFragment extends ListFragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.search, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
+        setupSearchForMenuItem(searchItem);
+    }
+
+    protected void setupSearchForMenuItem(MenuItem searchItem) {
         final SearchView searchView = (SearchView) searchItem.getActionView();
 
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);

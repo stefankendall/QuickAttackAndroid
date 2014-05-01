@@ -6,12 +6,18 @@ import com.stefankendall.QuickAttack.views.lists.SimpleListItem;
 
 public class MyPokemonListAdapter extends SimpleListAdapter {
     public MyPokemonListAdapter() {
+        this(true);
+    }
+
+    public MyPokemonListAdapter(boolean hasAdd) {
         super();
 
         for (String pokemon : MyPokemonStore.instance().getPokemon()) {
             this.items.add(new SimpleListItem(pokemon));
         }
 
-        this.items.add(new AddListItem());
+        if (hasAdd) {
+            this.items.add(new AddListItem());
+        }
     }
 }
