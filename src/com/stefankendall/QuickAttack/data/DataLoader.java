@@ -8,6 +8,7 @@ public class DataLoader {
     public void load() {
         try {
             PokemonStore.instance().load();
+            MyPokemonStore.instance().load();
         } catch (IOException e) {
             Log.e("DataLoader", "Could not load data");
         }

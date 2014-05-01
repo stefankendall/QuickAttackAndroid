@@ -1,7 +1,11 @@
 package com.stefankendall.QuickAttack.data;
 
+import android.content.SharedPreferences;
+import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import com.stefankendall.QuickAttack.App;
 
 import java.util.List;
 
@@ -25,7 +29,10 @@ public class MyPokemonStore {
     }
 
     public void load() {
-
+        SharedPreferences preferences = App.getContext().getSharedPreferences("MyPokemon", 0);
+        String jsonString = preferences.getString("mypokemon", "[]");
+        Gson gson = new Gson();
+        this.pokemon = gson.fromJson(jsonString, List.class);
     }
 
     public void empty() {
@@ -44,6 +51,13 @@ public class MyPokemonStore {
         if (!this.pokemon.contains(pokemon)) {
             this.pokemon.add(pokemon);
         }
+    }
+
+    public void save() {
+        SharedPreferences preferences = App.getContext().getSharedPreferences("MyPokemon", 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("mypokemon", "[" + Joiner.on(',').join(this.pokemon) + "]");
+        editor.commit();
     }
 }
 

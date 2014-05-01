@@ -12,8 +12,13 @@ public class PokemonListActivity extends SingleFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
-        MyPokemonStore.instance().load();
         setupNavigation();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyPokemonStore.instance().save();
     }
 
     @Override
